@@ -1,0 +1,1 @@
+curl -X POST https://hooks.slack.com/services/xxxx/xxxxx -d '{"username": "Haji Toped", "text": "10 menit menuju Sholat *Imsak : 04:27* :mosque:", "icon_emoji": ":kaaba:"}'
