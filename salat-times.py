@@ -9,11 +9,11 @@ from urllib.request import urlopen
 cityname = 'Jakarta'
 countryname = 'Indonesia'
 color = '#36a64f'
-url = f'http://api.aladhan.com/v1/timingsByAddress?address={cityname},{countryname}&method=11&tune=2,2,2,2,2,2,2,2,2'
+url = f'http://api.aladhan.com/v1/timingsByAddress?address={cityname},{countryname}&method=11&tune=2,2,0,4,2,4,0,2,0'
 username = 'Haji Toped'
 emojicon = ':kaaba:'
 webhookurl = 'https://hooks.slack.com/services/xxxx/xxxxx'
-#print(url)
+print(url)
 
 req_url = urllib.request.urlopen(url)
 req_url = requests.get(url)
@@ -35,8 +35,8 @@ date = parsejson["data"]["date"]["readable"]
 print(hijriday, hijrimonth, hijriyear)
 
 advminutes = 10
-start_message = f'Jadwal Salat *{date}* ({hijriweekday} - {hijriday} {hijrimonth}, {hijriyear}) \n\n'
-pre_message = f'Hai <!channel> , mengingatkan jadwal sholat untuk *{cityname}* dan sekitar nya :mosque:\n'
+start_message = f'*{date}* ({hijriweekday} - {hijriday} {hijrimonth}, {hijriyear}) \n\n'
+pre_message = f'Hai <!channel> , mengingatkan waktu Salat & Imsakiyah untuk *{cityname}* dan sekitar nya :mosque:\n'
 
 def convert_prayer_name(name: str) -> str:
 
@@ -107,10 +107,18 @@ def slack_sender(name: str, time: datetime):
     time_str = time.strftime('%H:%M')
     time += timedelta(minutes=advminutes)
     time = time.strftime('%H:%M')
-    message = f'{advminutes} menit menuju Sholat *{name} : {time}* :mosque:'
-    
+
+    if name == "Imsak":
+       message = f'\n\n *{name} : {time}*'
+       pre_message_10mins = f'*{advminutes} menit* menuju waktu *{name}* :mosque:'
+    else:
+       message = f'\n\n *{name} : {time}*'
+       pre_message_10mins = f'*{advminutes} menit* menuju waktu Salat *{name}* :mosque:'
+
     payloaddict = {
         'username': username,
+        'color': color,
+        'pretext': pre_message_10mins,
         'text': message,
         'icon_emoji': emojicon
     }
