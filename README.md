@@ -4,6 +4,25 @@
 
 Salat Prayer Times bot for Slack integration and use API from http://api.aladhan.com
 
+Available Calculation Methods https://aladhan.com/calculation-methods:
+
+```
+1. Muslim World League
+2. Islamic Society of North America
+3. Egyptian General Authority of Survey
+4. Umm Al-Qura University, Makkah
+5. University of Islamic Sciences, Karachi
+6. Institute of Geophysics, University of Tehran
+7. Shia Ithna-Ashari, Leva Institute, Qum
+8. Gulf Region
+9. Kuwait
+10. Qatar
+11. Majlis Ugama Islam Singapura, Singapore
+12. Union Organization islamic de France
+13. Diyanet İşleri Başkanlığı, Turkey
+14. Spiritual Administration of Muslims of Russia
+```
+
 ## Requirements
 
 * Python 3
